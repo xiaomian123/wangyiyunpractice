@@ -2,6 +2,7 @@ module.exports = {
   content: ['./src/**/*.{html,js,vue}', './public/**/*.{html,js}'],
   theme: {
     extend: {},
+    darkMode:'class',
   },
   plugins: [],
 };
