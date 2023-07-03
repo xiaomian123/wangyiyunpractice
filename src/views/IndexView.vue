@@ -11,7 +11,10 @@
         </span>
 
         <div class="inp flex w-[80vw] items-center border rounded-[10vw]">
-          <Icon icon="mingcute:search-line" color="#999" class="ml-[3vw]" />
+          <router-link :to="{ path: '/SearchView' }">
+            <Icon icon="mingcute:search-line" color="#999" class="ml-[3vw]" />
+          </router-link>
+          <!-- <router-view /> -->
           <input
             type="text"
             name=""
@@ -372,6 +375,7 @@
         </div>
       </van-popup>
 
+      
 
       <!-- banner -->
       <div class="swiper-container mt-3 mb-3 w-[90vw] rounded-[5vw]">
@@ -970,6 +974,7 @@ BScroll.use(ScrollBar);
 // import TopView from './TopView.vue';
 // import SongList from './SongListView/SongListView.vue';
 // import SongList from './'
+import Search from '@/views/SearchView/SearchView.vue';
 export default {
   // name: 'swiper-example-thumbs-gallery',
   // title: 'Thumbs gallery with Two-way control',
@@ -979,6 +984,7 @@ export default {
     // SwiperSlide,
     // TopView,
     // SongList,
+    Search,
   },
   data() {
     return {
@@ -1028,27 +1034,28 @@ export default {
       show:false,
       tuige:false,
       toggle:false,
+      returnout:false,
     };
   },
   computed: {},
   mounted() {
     // ref + $refs 获取页面上的组件、dom组件
-    // new BScroll(this.$refs.wrapper),
-    //   (this.swiper = new Swiper('.swiper-container', {
-    //     loop: true,
-    //     autoplay: {
-    //       delay: 1500,
-    //       disableOnInteraction: false,
-    //     },
-    //     pagination: {
-    //       el: '.swiper-pagination',
-    //       clickable: true,
-    //     },
-    //     // navigation: {
-    //     //   nextEl: '.swiper-button-next',
-    //     //   prevEl: '.swiper-button-prev',
-    //     // },
-    //   }));
+    new BScroll(this.$refs.wrapper),
+      (this.swiper = new Swiper('.swiper-container', {
+        loop: true,
+        autoplay: {
+          delay: 1500,
+          disableOnInteraction: false,
+        },
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+        },
+        // navigation: {
+        //   nextEl: '.swiper-button-next',
+        //   prevEl: '.swiper-button-prev',
+        // },
+      }));
     // this.init();
     this.animateItems();
   },
