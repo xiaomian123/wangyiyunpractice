@@ -19,7 +19,7 @@
             type="text"
             name=""
             id=""
-            placeholder="春暖花开（活死人班凛冬将至）"
+            placeholder="春暖花开(活死人班凛冬将至)"
             class="w-[65vw]"
           />
           <Icon icon="lucide:scan-line" />
