@@ -7,6 +7,23 @@
 //   el: '#app',
 //   render: (h) => h(indexView),
 // });
+import IndexView from '@/views/IndexView.vue'; // 不加 .vue 后缀名 不会 报错
+// 1. 引入路由插件
+import VueRouter  from 'vue-router';
+// 2. 注册路由所提供的全局组件  ① router-view（渲染） router-Link (跳转)
+Vue.use(VueRouter);
+// 3.实例化
+const router123 = new VueRouter( /**配置核心 */
+// 相当于刚刚自己定义的viewMap
+  routes [
+    // 路径重定向
+    {
+      path:'/IndexView',
+      component: IndexView,
+    }
+  ],
+);
+
 
 import Vue  from 'vue';
 import '@/index.css';
@@ -24,12 +41,15 @@ Vue.component('t-switch',Switch);
 // 但是其他实例不具备
 const vm = new Vue({
   el:'#app',
+  // 4. 将router 注入到root中
+  router:router123,
   components: {App},
   template: '<App/>',
-  // created() {
-  //   console.log(this.$parent); // undefined
-  //   console.log(this.$children); // [App]
-  // },
+  created() {
+    // console.log(this.$parent); // undefined
+    // console.log(this.$children); // [App]
+    window.vw = this;
+  },
   data: {
     swiper: null
   },
