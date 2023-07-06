@@ -1,7 +1,7 @@
 <template>
   <div :class="{ dark: switchCheckStatus }">
     <div
-      class="w-screen h-screen overflow-auto bg-[#F8F9F9] dark:bg-gray-900 dark:text-[#fff]"
+      class="w-screen h-screen overflow-auto bg-slate-100 dark:bg-gray-900 dark:text-[#fff]"
     >
       <!-- 头部 -->
       <!-- <TopView></TopView> -->
@@ -375,25 +375,23 @@
         </div>
       </van-popup>
 
-      
-
       <!-- banner -->
       <div class="swiper-container mt-3 mb-3 w-[90vw] rounded-[5vw]">
-      <div class="swiper-wrapper rounded-[5vw]">
-        <div
-          class="swiper-slide rounded-[5vw]"
-          v-for="item in menu"
-          v-bind:key="item.id"
-        >
-          <img :src="item.pic" alt="" />
+        <div class="swiper-wrapper rounded-[5vw]">
+          <div
+            class="swiper-slide rounded-[5vw]"
+            v-for="item in menu"
+            v-bind:key="item.id"
+          >
+            <img :src="item.pic" alt="" />
+          </div>
         </div>
-      </div>
-      <!-- Add Pagination -->
-      <!-- <div class="swiper-pagination"></div> -->
-      <!-- Add Arrows-->
-      <!-- <div class="swiper-button-next"></div>
+        <!-- Add Pagination -->
+        <!-- <div class="swiper-pagination"></div> -->
+        <!-- Add Arrows-->
+        <!-- <div class="swiper-button-next"></div>
       <div class="swiper-button-prev"></div> -->
-    </div>
+      </div>
       <!-- 菜单 -->
 
       <div class="flex w-[95vw] h-[24vw] relative left-[2vw]">
@@ -421,20 +419,54 @@
             <h3 class="font-[900]">推荐歌单</h3>
             <Icon icon="mingcute:right-fill" />
           </div>
-          <span @click="tuige=!tuige">
+
+          <span @click="tuige = !tuige">
             <Icon icon="mingcute:more-2-line" />
           </span>
-          
         </div>
         <div class="text-[#000] dark:text-[#000]">
-     <van-popup v-model="tuige" closeable  close-icon="close"   position="bottom" :style="{ height: '30%' }">
-       <li class="list-none w-[50vw] h-[10vw] text-[5vw] relative top-[2vw] left-[4vw]">推荐歌单</li>
-       <li class="list-none relative top-[2vw]"><hr></li>
-       <li class="list-none w-[50vw] h-[10vw] flex relative top-[4vw]"><Icon icon="ant-design:like-outlined" width="30" height="30" /><p class="text-[5vw] relative top-[1vw]">优先推荐</p></li>
-       <li class="list-none w-[50vw] h-[10vw] flex relative top-[4vw]"><svg t="1688102710427" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2309" width="32" height="32"><path d="M903.06 169.31c-48.34-48.76-114.05-76.02-184.27-76.02-70.22 0-135.93 27.26-185.02 76.76l-21.41 21.26-21.51-21.51c-49.34-49.34-115.07-76.51-185.06-76.51-69.99 0-135.72 27.17-185.06 76.51-49.25 48.85-76.52 114.56-76.52 184.78s27.27 135.93 76.77 185.02l81.95 81.96L451.8 870.44l60.27 60.27 60.34-60.2 249.44-248.88 81.92-82.48c48.06-47.26 76.03-114.79 76.03-184.57-0.01-69.78-27.97-137.31-76.74-185.27z m-59.84 309.71l-81.64 82.21L512.14 810.1 263.27 561.22l-82.2-82.21c-68.7-68.13-68.7-180.74 0-248.88 34.35-34.35 79.53-51.52 124.72-51.52s90.37 17.17 124.72 51.52l54.08 54.09h55.31l54.46-54.09c34.07-34.35 79.25-51.52 124.44-51.52s90.37 17.17 124.43 51.52c34.35 33.79 51.24 79.39 51.24 124.44s-16.9 90.66-51.25 124.45z" fill="#999999" p-id="2310"></path></svg><p class="text-[5vw] relative top-[1vw]">减少推荐</p></li>
-       <li class="list-none w-[50vw] h-[10vw] flex relative top-[4vw]"><Icon icon="uil:exclamation-circle" width="30" height="30" /><p class="text-[5vw] relative top-[1vw]">更多内容</p></li>
-    </van-popup>
-    </div>
+          <van-popup
+            v-model="tuige"
+            closeable
+            close-icon="close"
+            position="bottom"
+            :style="{ height: '30%' }"
+          >
+            <li
+              class="list-none w-[50vw] h-[10vw] text-[5vw] relative top-[2vw] left-[4vw]"
+            >
+              推荐歌单
+            </li>
+            <li class="list-none relative top-[2vw]"><hr /></li>
+            <li class="list-none w-[50vw] h-[10vw] flex relative top-[4vw]">
+              <Icon icon="ant-design:like-outlined" width="30" height="30" />
+              <p class="text-[5vw] relative top-[1vw]">优先推荐</p>
+            </li>
+            <li class="list-none w-[50vw] h-[10vw] flex relative top-[4vw]">
+              <svg
+                t="1688102710427"
+                class="icon"
+                viewBox="0 0 1024 1024"
+                version="1.1"
+                xmlns="http://www.w3.org/2000/svg"
+                p-id="2309"
+                width="32"
+                height="32"
+              >
+                <path
+                  d="M903.06 169.31c-48.34-48.76-114.05-76.02-184.27-76.02-70.22 0-135.93 27.26-185.02 76.76l-21.41 21.26-21.51-21.51c-49.34-49.34-115.07-76.51-185.06-76.51-69.99 0-135.72 27.17-185.06 76.51-49.25 48.85-76.52 114.56-76.52 184.78s27.27 135.93 76.77 185.02l81.95 81.96L451.8 870.44l60.27 60.27 60.34-60.2 249.44-248.88 81.92-82.48c48.06-47.26 76.03-114.79 76.03-184.57-0.01-69.78-27.97-137.31-76.74-185.27z m-59.84 309.71l-81.64 82.21L512.14 810.1 263.27 561.22l-82.2-82.21c-68.7-68.13-68.7-180.74 0-248.88 34.35-34.35 79.53-51.52 124.72-51.52s90.37 17.17 124.72 51.52l54.08 54.09h55.31l54.46-54.09c34.07-34.35 79.25-51.52 124.44-51.52s90.37 17.17 124.43 51.52c34.35 33.79 51.24 79.39 51.24 124.44s-16.9 90.66-51.25 124.45z"
+                  fill="#999999"
+                  p-id="2310"
+                ></path>
+              </svg>
+              <p class="text-[5vw] relative top-[1vw]">减少推荐</p>
+            </li>
+            <li class="list-none w-[50vw] h-[10vw] flex relative top-[4vw]">
+              <Icon icon="uil:exclamation-circle" width="30" height="30" />
+              <p class="text-[5vw] relative top-[1vw]">更多内容</p>
+            </li>
+          </van-popup>
+        </div>
         <div class="flex w-[95vw] relative h-[40vw]">
           <ul class="menu overflow-auto flex h-[40vw]">
             <div
@@ -468,7 +500,7 @@
                 </transition>
               </div>
               <p class="text-[2.78vw] text-[#3E4759] scroll-item line-clamp-2">
-                {{resourceData }}
+                {{ resourceData }}
               </p>
             </div>
             <!-- 推荐歌单轮播 -->
@@ -511,11 +543,15 @@
               v-for="item in tjgedan"
               :key="item.id"
             >
-              <img
-                :src="item.picUrl"
-                alt=""
-                class="w-[30vw] h-[30vw] rounded-[4vw]"
-              />
+              <router-link :to="{path:'/SongmenuView'}">
+                <img
+                  :src="item.picUrl"
+                  alt=""
+                  class="w-[30vw] h-[30vw] rounded-[4vw]"
+                />
+                <!-- @click="songDtails(resources[0].resourceId)" -->
+              </router-link>
+
               <div class="flex w-[15vw] h-[4vw] absolute right-[2vw] top-[2vw]">
                 <Icon icon="gridicons:play" color="white" />
                 <span class="w-[11vw] h-[4vw] text-white text-[2vw]">{{
@@ -634,51 +670,50 @@
           <span @click="shows = !shows" class="ml-[70vw]">
             <Icon icon="mingcute:more-2-line" />
           </span>
-          
 
           <div class="text-[#000] dark:text-[#000]">
-      <van-popup
-        v-model="shows"
-        closeable
-        close-icon="close"
-        position="bottom"
-        :style="{ height: '30%' }"
-      >
-        <li
-          class="list-none w-[50vw] h-[10vw] text-[5vw] relative top-[2vw] left-[4vw]"
-        >
-          排行榜
-        </li>
-        <li class="list-none relative top-[2vw]"><hr /></li>
-        <li class="list-none w-[50vw] h-[10vw] flex relative top-[4vw]">
-          <Icon icon="ant-design:like-outlined" width="30" height="30" />
-          <p class="text-[5vw] relative top-[1vw]">优先推荐</p>
-        </li>
-        <li class="list-none w-[50vw] h-[10vw] flex relative top-[4vw]">
-          <svg
-            t="1688102710427"
-            class="icon"
-            viewBox="0 0 1024 1024"
-            version="1.1"
-            xmlns="http://www.w3.org/2000/svg"
-            p-id="2309"
-            width="32"
-            height="32"
-          >
-            <path
-              d="M903.06 169.31c-48.34-48.76-114.05-76.02-184.27-76.02-70.22 0-135.93 27.26-185.02 76.76l-21.41 21.26-21.51-21.51c-49.34-49.34-115.07-76.51-185.06-76.51-69.99 0-135.72 27.17-185.06 76.51-49.25 48.85-76.52 114.56-76.52 184.78s27.27 135.93 76.77 185.02l81.95 81.96L451.8 870.44l60.27 60.27 60.34-60.2 249.44-248.88 81.92-82.48c48.06-47.26 76.03-114.79 76.03-184.57-0.01-69.78-27.97-137.31-76.74-185.27z m-59.84 309.71l-81.64 82.21L512.14 810.1 263.27 561.22l-82.2-82.21c-68.7-68.13-68.7-180.74 0-248.88 34.35-34.35 79.53-51.52 124.72-51.52s90.37 17.17 124.72 51.52l54.08 54.09h55.31l54.46-54.09c34.07-34.35 79.25-51.52 124.44-51.52s90.37 17.17 124.43 51.52c34.35 33.79 51.24 79.39 51.24 124.44s-16.9 90.66-51.25 124.45z"
-              fill="#999999"
-              p-id="2310"
-            ></path>
-          </svg>
-          <p class="text-[5vw] relative top-[1vw]">减少推荐</p>
-        </li>
-        <li class="list-none w-[50vw] h-[10vw] flex relative top-[4vw]">
-          <Icon icon="uil:exclamation-circle" width="30" height="30" />
-          <p class="text-[5vw] relative top-[1vw]">更多内容</p>
-        </li>
-      </van-popup>
-    </div>
+            <van-popup
+              v-model="shows"
+              closeable
+              close-icon="close"
+              position="bottom"
+              :style="{ height: '30%' }"
+            >
+              <li
+                class="list-none w-[50vw] h-[10vw] text-[5vw] relative top-[2vw] left-[4vw]"
+              >
+                排行榜
+              </li>
+              <li class="list-none relative top-[2vw]"><hr /></li>
+              <li class="list-none w-[50vw] h-[10vw] flex relative top-[4vw]">
+                <Icon icon="ant-design:like-outlined" width="30" height="30" />
+                <p class="text-[5vw] relative top-[1vw]">优先推荐</p>
+              </li>
+              <li class="list-none w-[50vw] h-[10vw] flex relative top-[4vw]">
+                <svg
+                  t="1688102710427"
+                  class="icon"
+                  viewBox="0 0 1024 1024"
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  p-id="2309"
+                  width="32"
+                  height="32"
+                >
+                  <path
+                    d="M903.06 169.31c-48.34-48.76-114.05-76.02-184.27-76.02-70.22 0-135.93 27.26-185.02 76.76l-21.41 21.26-21.51-21.51c-49.34-49.34-115.07-76.51-185.06-76.51-69.99 0-135.72 27.17-185.06 76.51-49.25 48.85-76.52 114.56-76.52 184.78s27.27 135.93 76.77 185.02l81.95 81.96L451.8 870.44l60.27 60.27 60.34-60.2 249.44-248.88 81.92-82.48c48.06-47.26 76.03-114.79 76.03-184.57-0.01-69.78-27.97-137.31-76.74-185.27z m-59.84 309.71l-81.64 82.21L512.14 810.1 263.27 561.22l-82.2-82.21c-68.7-68.13-68.7-180.74 0-248.88 34.35-34.35 79.53-51.52 124.72-51.52s90.37 17.17 124.72 51.52l54.08 54.09h55.31l54.46-54.09c34.07-34.35 79.25-51.52 124.44-51.52s90.37 17.17 124.43 51.52c34.35 33.79 51.24 79.39 51.24 124.44s-16.9 90.66-51.25 124.45z"
+                    fill="#999999"
+                    p-id="2310"
+                  ></path>
+                </svg>
+                <p class="text-[5vw] relative top-[1vw]">减少推荐</p>
+              </li>
+              <li class="list-none w-[50vw] h-[10vw] flex relative top-[4vw]">
+                <Icon icon="uil:exclamation-circle" width="30" height="30" />
+                <p class="text-[5vw] relative top-[1vw]">更多内容</p>
+              </li>
+            </van-popup>
+          </div>
         </div>
         <div class="menu overflow-auto flex w-[95vw] relative">
           <ul
@@ -796,45 +831,45 @@
           </span>
         </div>
         <div class="text-[#000] dark:text-[#000]">
-      <van-popup
-        v-model="show"
-        closeable
-        close-icon="close"
-        position="bottom"
-        :style="{ height: '30%' }"
-        class="bg-[white] text-[#000]  dark:bg-gray-900 dark:text-[#fff]"
-      >
-        <li
-          class="list-none w-[50vw] h-[10vw] text-[5vw] relative top-[2vw] left-[4vw]"
-        >
-          热门话题
-        </li>
-        <li class="list-none relative top-[2vw]"><hr /></li>
-        <li class="list-none w-[50vw] h-[10vw] flex relative top-[4vw]">
-          <Icon icon="ant-design:like-outlined" width="30" height="30" />
-          <p class="text-[5vw] relative top-[1vw]">优先推荐</p>
-        </li>
-        <li class="list-none w-[50vw] h-[10vw] flex relative top-[4vw]">
-          <svg
-            t="1688102710427"
-            class="icon"
-            viewBox="0 0 1024 1024"
-            version="1.1"
-            xmlns="http://www.w3.org/2000/svg"
-            p-id="2309"
-            width="32"
-            height="32"
+          <van-popup
+            v-model="show"
+            closeable
+            close-icon="close"
+            position="bottom"
+            :style="{ height: '30%' }"
+            class="bg-[white] text-[#000] dark:bg-gray-900 dark:text-[#fff]"
           >
-            <path
-              d="M903.06 169.31c-48.34-48.76-114.05-76.02-184.27-76.02-70.22 0-135.93 27.26-185.02 76.76l-21.41 21.26-21.51-21.51c-49.34-49.34-115.07-76.51-185.06-76.51-69.99 0-135.72 27.17-185.06 76.51-49.25 48.85-76.52 114.56-76.52 184.78s27.27 135.93 76.77 185.02l81.95 81.96L451.8 870.44l60.27 60.27 60.34-60.2 249.44-248.88 81.92-82.48c48.06-47.26 76.03-114.79 76.03-184.57-0.01-69.78-27.97-137.31-76.74-185.27z m-59.84 309.71l-81.64 82.21L512.14 810.1 263.27 561.22l-82.2-82.21c-68.7-68.13-68.7-180.74 0-248.88 34.35-34.35 79.53-51.52 124.72-51.52s90.37 17.17 124.72 51.52l54.08 54.09h55.31l54.46-54.09c34.07-34.35 79.25-51.52 124.44-51.52s90.37 17.17 124.43 51.52c34.35 33.79 51.24 79.39 51.24 124.44s-16.9 90.66-51.25 124.45z"
-              fill="#999999"
-              p-id="2310"
-            ></path>
-          </svg>
-          <p class="text-[5vw] relative top-[1vw]">减少推荐</p>
-        </li>
-      </van-popup>
-      </div>
+            <li
+              class="list-none w-[50vw] h-[10vw] text-[5vw] relative top-[2vw] left-[4vw]"
+            >
+              热门话题
+            </li>
+            <li class="list-none relative top-[2vw]"><hr /></li>
+            <li class="list-none w-[50vw] h-[10vw] flex relative top-[4vw]">
+              <Icon icon="ant-design:like-outlined" width="30" height="30" />
+              <p class="text-[5vw] relative top-[1vw]">优先推荐</p>
+            </li>
+            <li class="list-none w-[50vw] h-[10vw] flex relative top-[4vw]">
+              <svg
+                t="1688102710427"
+                class="icon"
+                viewBox="0 0 1024 1024"
+                version="1.1"
+                xmlns="http://www.w3.org/2000/svg"
+                p-id="2309"
+                width="32"
+                height="32"
+              >
+                <path
+                  d="M903.06 169.31c-48.34-48.76-114.05-76.02-184.27-76.02-70.22 0-135.93 27.26-185.02 76.76l-21.41 21.26-21.51-21.51c-49.34-49.34-115.07-76.51-185.06-76.51-69.99 0-135.72 27.17-185.06 76.51-49.25 48.85-76.52 114.56-76.52 184.78s27.27 135.93 76.77 185.02l81.95 81.96L451.8 870.44l60.27 60.27 60.34-60.2 249.44-248.88 81.92-82.48c48.06-47.26 76.03-114.79 76.03-184.57-0.01-69.78-27.97-137.31-76.74-185.27z m-59.84 309.71l-81.64 82.21L512.14 810.1 263.27 561.22l-82.2-82.21c-68.7-68.13-68.7-180.74 0-248.88 34.35-34.35 79.53-51.52 124.72-51.52s90.37 17.17 124.72 51.52l54.08 54.09h55.31l54.46-54.09c34.07-34.35 79.25-51.52 124.44-51.52s90.37 17.17 124.43 51.52c34.35 33.79 51.24 79.39 51.24 124.44s-16.9 90.66-51.25 124.45z"
+                  fill="#999999"
+                  p-id="2310"
+                ></path>
+              </svg>
+              <p class="text-[5vw] relative top-[1vw]">减少推荐</p>
+            </li>
+          </van-popup>
+        </div>
         <div class="menu overflow-auto flex w-[95vw] relative">
           <ul class="flex bg-red-300 min-w-[85vw] h-[40vw] mr-[2vw] rounded-lg">
             <li
@@ -975,6 +1010,8 @@ BScroll.use(ScrollBar);
 // import SongList from './SongListView/SongListView.vue';
 // import SongList from './'
 import Search from '@/views/SearchView/SearchView.vue';
+// import store from '@/store/_index'
+
 export default {
   // name: 'swiper-example-thumbs-gallery',
   // title: 'Thumbs gallery with Two-way control',
@@ -1030,11 +1067,11 @@ export default {
       resourceData: '',
       lunbo: [],
       topleftclick: false,
-      shows:false,
-      show:false,
-      tuige:false,
-      toggle:false,
-      returnout:false,
+      shows: false,
+      show: false,
+      tuige: false,
+      toggle: false,
+      returnout: false,
     };
   },
   computed: {},
@@ -1063,6 +1100,7 @@ export default {
   //   this.scroll.destroy();
   // },
   methods: {
+    // increase:store.mutations.increase, // 写法2
     toggleMenu(name) {
       this.activeMenuItem = name;
       this.fetchPlaylists(name);
@@ -1080,14 +1118,20 @@ export default {
         });
     },
     animateItems() {
+      //推荐歌单里小轮播数据 方法
       setInterval(() => {
         this.visible++;
         if (this.visible === this.lunbo.length) {
           this.visible = 0;
         }
-        this.resourceData =
-          this.lunbo[this.visible].uiElement.mainTitle.title;
+        this.resourceData = this.lunbo[this.visible].uiElement.mainTitle.title;
       }, 5000);
+    },
+    songDtails(id) {
+      // 推荐歌单里任意歌单获取id   方法
+      this.$router.push({ path: '/SongmenuView', query: { id } });
+      // this.$router.push({ path: '/song', query: { id: this.personalized[index].id } });
+      console.log(songDtails(resources[0].resourceId));
     },
   },
   created() {
@@ -1105,7 +1149,7 @@ export default {
         this.lunbo = res.data.data.blocks[1].creatives[0].resources; // 小轮播
         // this.lunboTitle = this.lunbo;// 小轮播
 
-        console.log(lunbo);
+        // console.log(lunbo);
         // console.log(lunboTitle)
       })
       // .then((cat) => this.fetchPlaylists(cat))
@@ -1141,7 +1185,7 @@ export default {
         'https://netease-cloud-music-api-five-roan-88.vercel.app/calendar?startTime=1677417600000&endTime=1677417600000'
       )
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         this.calendars = res.data.data.calendarEvents;
         // console.log(this.calendars);
         this.newday = new Date().toLocaleDateString().slice(5);

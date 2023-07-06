@@ -88,5 +88,11 @@ module.exports = {
       },
     }),
     new VueLoaderPlugin(),
+    // new CopyPlugin({
+    //   patterns: [
+    //     { from: "../src/stactic", to: "./stactic" },
+    //     { from: "other", to: "public" },
+    //   ],
+    // }),
   ],
 };

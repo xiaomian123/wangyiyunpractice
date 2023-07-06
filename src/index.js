@@ -36,6 +36,27 @@ Vue.use(Vant);
 Vue.component('Icon',Icon);
 Vue.component('t-switch',Switch);
 
+// import Vuex from '@/vuex';
+// Vue.use(Vuex);
+// const store = new Vuex.Store({
+//   state:{
+//     count:123,
+//     msg :'hello  wang'
+//   }
+// });
+
+// import  Dialog  from './components/Dialog';
+// Vue.use(Dialog)
+
+// const ChildVue = Vue.extend({
+//   template:'<h1>{{msg}}</h1>',
+//   data(){
+//     return{
+//       msg:'abc'
+//     }
+//   }
+// })
+
 
 // vm就是根实例 root  具备el
 // 但是其他实例不具备
@@ -44,8 +65,13 @@ const vm = new Vue({
   // 4. 将router 注入到root中
   router,
   // router:router123,
+  // store,
   components: {App},
   template: '<App/>',
+
+
+
+
   created() {
     // console.log(this.$parent); // undefined
     // console.log(this.$children); // [App]
@@ -54,7 +80,7 @@ const vm = new Vue({
   data: {
     // swiper: null
   },
-  render:(h) =>h(indexView),
+  // render:(h) =>h(indexView),
   mounted() {
     // console.log(this.$children[0].$children);
     // this.initSwiper();
@@ -75,6 +101,12 @@ const vm = new Vue({
     // }
   }
 });
+// app.$mount();// 把模板编译为浏览器能够识别的html片段并赋值给app的$el属性
+
+// document.querySelector('body').appendChild(app.$el);
+
+// window.app=app;
+// console.log(app)
 /*
 class V {
   static component(name, comp) {
