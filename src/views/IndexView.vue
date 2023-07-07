@@ -471,7 +471,7 @@
           <ul class="menu overflow-auto flex h-[40vw]">
             <div
               ref="wrapper"
-              class="wrapper relative flex min-w-[30vw] flex-wrap h-[40vw] mr-[2.5vw] overflow-hidden border-[1px]"
+              class="wrapper relative flex min-w-[30vw] flex-wrap h-[40vw] mr-[2.5vw] overflow-hidden "
             >
               <div>
                 <div
@@ -494,12 +494,12 @@
                     <img
                       :src="item.uiElement.image.imageUrl"
                       alt=""
-                      class="w-[31vw] h-[31vw] rounded-[3vw]"
+                      class="w-[30vw] h-[30vw] rounded-[4vw]"
                     />
                   </div>
                 </transition>
               </div>
-              <p class="text-[2.78vw] text-[#3E4759] scroll-item line-clamp-2">
+              <p class="w-[30vw] h-[8vw] absolute top-[4%] right-[8%] text-[2.78vw] text-[#3E4759] scroll-item line-clamp-2 ">
                 {{ resourceData }}
               </p>
             </div>
