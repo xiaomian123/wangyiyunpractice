@@ -1,3 +1,4 @@
-// export default{
-//     darkMode:false,
-// }
+export default{
+    darkMode:false,
+    count:1,
+}

@@ -366,11 +366,13 @@
             </div>
 
             <!-- 退出登录 -->
-            <div
-              class="w-[72vw] h-[15vw] bg-[white] text-[red] dark:bg-[#2C2C2C] dark:text-[#fff] rounded-[2vw] mt-[2vw] ml-[4vw] m-[1vw] text-center text-[6vw] leading-[15vw]"
-            >
-              退出登录/关闭
-            </div>
+            <router-link :to="{ path: '/Dialog' }">
+              <div
+                class="w-[72vw] h-[15vw] bg-[white] text-[red] dark:bg-[#2C2C2C] dark:text-[#fff] rounded-[2vw] mt-[2vw] ml-[4vw] m-[1vw] text-center text-[6vw] leading-[15vw]"
+              >
+                退出登录/关闭
+              </div>
+            </router-link>
           </div>
         </div>
       </van-popup>
@@ -471,7 +473,7 @@
           <ul class="menu overflow-auto flex h-[40vw]">
             <div
               ref="wrapper"
-              class="wrapper relative flex min-w-[30vw] flex-wrap h-[40vw] mr-[2.5vw] overflow-hidden "
+              class="wrapper relative flex min-w-[30vw] flex-wrap h-[40vw] mr-[2.5vw] overflow-hidden"
             >
               <div>
                 <div
@@ -499,7 +501,9 @@
                   </div>
                 </transition>
               </div>
-              <p class="w-[30vw] h-[8vw] absolute top-[4%] right-[8%] text-[2.78vw] text-[#3E4759] scroll-item line-clamp-2 ">
+              <p
+                class="w-[30vw] h-[8vw] absolute top-[4%] right-[8%] text-[2.78vw] text-[#3E4759] scroll-item line-clamp-2"
+              >
                 {{ resourceData }}
               </p>
             </div>
@@ -540,18 +544,18 @@
 
             <li
               class="relative flex min-w-[30vw] flex-wrap h-[40vw] mr-[2.5vw]"
-              v-for="item in tjgedan"
-              :key="item.id"
+              v-for="(item, index) in tjgedan"
+              :key="index"
+              @click="saveIndexToArray(index)"
             >
-              <router-link :to="{path:'/SongmenuView'}">
+              <router-link :to="{ path: '/SongmenuView/' }">
                 <img
                   :src="item.picUrl"
                   alt=""
                   class="w-[30vw] h-[30vw] rounded-[4vw]"
                 />
-                <!-- @click="songDtails(resources[0].resourceId)" -->
               </router-link>
-
+              <!-- @click="songDtails(resources[0].resourceId)" -->
               <div class="flex w-[15vw] h-[4vw] absolute right-[2vw] top-[2vw]">
                 <Icon icon="gridicons:play" color="white" />
                 <span class="w-[11vw] h-[4vw] text-white text-[2vw]">{{
@@ -1006,22 +1010,27 @@ import '../../node_modules/swiper/css/swiper.css';
 import BScroll from '@better-scroll/core';
 import ScrollBar from '@better-scroll/scroll-bar';
 BScroll.use(ScrollBar);
+import TSwitch from '@/views/Switch.vue';
 // import TopView from './TopView.vue';
 // import SongList from './SongListView/SongListView.vue';
 // import SongList from './'
 import Search from '@/views/SearchView/SearchView.vue';
+// import { getUserAccount } from '@/request';
 // import store from '@/store/_index'
-
+import { getUserAccount, getUserDetail } from '@/request';
+import Vue from 'vue';
+import { Popup } from 'vant';
+Vue.use(Popup);
 export default {
   // name: 'swiper-example-thumbs-gallery',
   // title: 'Thumbs gallery with Two-way control',
   components: {
     Icon,
     Swiper,
-    // SwiperSlide,
     // TopView,
     // SongList,
     Search,
+    TSwitch,
   },
   data() {
     return {
@@ -1030,13 +1039,6 @@ export default {
       activeMenuItem: '',
       playlists: [],
       swiper: null,
-      // menuList: [
-      //   ['solar:calendar-date-bold', '每日推荐'],
-      //   ['material-symbols:radio', '私人漫游'],
-      //   ['prime:book', '歌单'],
-      //   ['prime:book', '排行榜'],
-      //   ['mdi:audiobook', '有声书'],
-      // ],
       menudan: [],
       tjgedan: [],
       newsong: [],
@@ -1072,6 +1074,7 @@ export default {
       tuige: false,
       toggle: false,
       returnout: false,
+      tjgedanid: [],
     };
   },
   computed: {},
@@ -1095,12 +1098,19 @@ export default {
       }));
     // this.init();
     this.animateItems();
+    this.saveIndexToArray();
+    // this. songDtails()
   },
   // beforeDestroy() {
   //   this.scroll.destroy();
   // },
   methods: {
     // increase:store.mutations.increase, // 写法2
+    saveIndexToArray(index) {
+      //存id
+      (this.indexArray = []), this.indexArray.push(index);
+      console.log(this.indexArray);
+    },
     toggleMenu(name) {
       this.activeMenuItem = name;
       this.fetchPlaylists(name);
@@ -1127,14 +1137,9 @@ export default {
         this.resourceData = this.lunbo[this.visible].uiElement.mainTitle.title;
       }, 5000);
     },
-    songDtails(id) {
-      // 推荐歌单里任意歌单获取id   方法
-      this.$router.push({ path: '/SongmenuView', query: { id } });
-      // this.$router.push({ path: '/song', query: { id: this.personalized[index].id } });
-      console.log(songDtails(resources[0].resourceId));
-    },
+    //                
   },
-  created() {
+  async created() {
     axios
       .get(
         // 'https://netease-cloud-music-api-five-roan-88.vercel.app/playlist/hot'
@@ -1164,8 +1169,7 @@ export default {
       })
       .catch((err) => console.log(err));
     // 推荐歌单数据
-    axios
-      .get(
+    axios//      .get(
         'https://netease-cloud-music-c2c1ys55f-cc-0820.vercel.app/personalized'
       )
       .then((res) => {
@@ -1193,6 +1197,8 @@ export default {
       .catch((err) => {
         console.log(err);
       });
+    const res = await getUserAccount(); //获取用户信息
+    console.log(res);
   },
 };
 var swiper = new Swiper('.mySwiper', {
@@ -1247,6 +1253,17 @@ html {
 }
 .abc-leave-to {
   transform: translateY(-100%) scale(0.7);
+}
+
+ul::-webkit-scrollbar {
+  width: 0;
+}
+
+ul::-webkit-scrollbar-track {
+  opacity: 0;
+}
+ul::-webkit-scrollbar-thumb {
+  opacity: 0;
 }
 </style>
 

@@ -168,7 +168,7 @@
 </template>
 <script >
 import axios from 'axios';
-// import { songDetails, songInfo } from '@/request/index.js'; //引入
+import { songDetails, songInfo } from '@/request/index.js'; //引入
 import { fetchToplistDetail } from "@/request/index.js";
 
 
@@ -176,54 +176,41 @@ export default {
   name: 'Songmenu',
   data() {
     return {
-      
+      songDetails:'',
 
-      // songList: [],
-      // songList1: [],
+      songList: [],
+      songList1: [],
       res:[]
     };
   },
-  methods: {},
-  // async created() {
-  //   console.log(this.$route);
-  //   songDetails(this.$route.query.id).then((res) => {
-  //     console.log(res);
-  //     this.songList = res.data.playlist;
-  //     console.log(this.songList);
-  //   });
-  //   console.log(songDetails())
-  //   songInfo(this.$route.query.id).then((res) => {
-  //     console.log(res);
-  //     this.songList1 = res.data.songs;
-  //     console.log(this.songList1);
-  //   });
-  //   // console.log(songDetail(this.$route.query.id));
-  // },
-  async created() {
-      // this.local();
-      // axios
-      //     .get(
-      //         `https://netease-cloud-music-api-five-roan-88.vercel.app/playlist/detail?id=${this.id}`
-      //     )
-      //     .then((res) => {
-      //         this.musicData = res.data
-      //     })
-      //     .catch((err) => {
-      //         console.log(err);
-      //     });
-      // axios
-      //     .get(
-      //         `https://netease-cloud-music-api-five-roan-88.vercel.app/playlist/track/all?id=${this.id}`
-      //     )
-      //     .then((res) => {
-      //         this.musicmMean = res.data;
-      //     })
-      //     .catch((err) => {
-      //         console.log(err);
-      //     });
-      this.res = await fetchToplistDetail()
-      console.log(this.res)
-        console.log(this.res[0])
+  methods: {
+    local() {
+            let url = window.location.href
+            let index = url.lastIndexOf("/") + 1
+            this.id = url.slice(index)
+        },
   },
+  
+  async created() {
+    console.log(this.$route);
+    songDetails(this.$route.query.id).then((res) => {
+      console.log(res);
+      this.songList = res.data.playlist;
+      console.log(this.songList);
+    });
+    console.log(songDetails())
+    songInfo(this.$route.query.id).then((res) => {
+      console.log(res);
+      this.songList1 = res.data.songs;
+      console.log(this.songList1);
+    });
+    // console.log(songDetail(this.$route.query.id));
+  },
+  // async created() {
+      
+  //     // this.res = await fetchToplistDetail()
+  //     // console.log(this.res)
+  //     //   console.log(this.res[0])
+  // },
 };
 </script>

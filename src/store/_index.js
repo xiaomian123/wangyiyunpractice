@@ -5,18 +5,16 @@
 // 数据发生变化  那么所有使用该数据的模板全部自动更新
 
 // 间接使用 全局api Vue.observable(obj)
-// import Vue  from 'vue';
-// import _state from './_state'
-// const state = Vue.observable({
-//     // darkMode:false,
-//     _state
-// });
-// const mutations ={
-//     increase(){
-//         state.count++;
-//     }
-// };
-// export default {
-//     state,
-//     mutations,
-// };
+import Vue from 'vue';
+import _state from './state';
+const state = Vue.observable(_state);
+const mutations = {
+  increase() {
+    state.count++;
+  },
+};
+
+export default {
+  state,
+  mutations,
+};

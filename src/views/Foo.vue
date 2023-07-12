@@ -2,7 +2,8 @@
     <div class=" w-[320px] h-[320px] overflow-auto bg-slate-100">
        <!-- <h1>Foo view</h1> -->
        <button @click="fn">toggle dialog</button>
-       <!-- <Dialog title="警告" message="提示内容" /> -->
+       <Dialog title="警告" message="提示内容" />
+       <Dialog></Dialog>
     </div>
 </template>
 <script>

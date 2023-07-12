@@ -3,6 +3,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const WebpackBar = require('webpackbar');
 const path = require('path');
 const { VueLoaderPlugin } = require('vue-loader');
+const CopyPlugin = require("copy-webpack-plugin");
 module.exports = {
   entry: './src/index.js',
   devtool: 'source-map',
@@ -12,6 +13,12 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: /\.jsx?$/,
+        use: {
+          loader: 'babel-loader',
+        },
+      },
       {
         test: /\.template$/,
         use: {
@@ -45,6 +52,7 @@ module.exports = {
         test: /\.(woff | eot | ttf | otf | svg)$/,
         type: 'asset/resource',
       },
+      
     ],
   },
   mode: process.env.NODE_ENV,
@@ -53,11 +61,13 @@ module.exports = {
       vue: 'vue/dist/vue.esm.js',
       '@': path.resolve(__dirname, '../src'),
     },
+    extensions: ['.js', '.json', '.jsx'],
   },
   // externals: {
   //   vue: 'Vue',
   // },
   devServer: {
+
     open: true,
     // 配置前端请求代理
     proxy: {
@@ -88,11 +98,10 @@ module.exports = {
       },
     }),
     new VueLoaderPlugin(),
-    // new CopyPlugin({
-    //   patterns: [
-    //     { from: "../src/stactic", to: "./stactic" },
-    //     { from: "other", to: "public" },
-    //   ],
-    // }),
+    new CopyPlugin({
+      patterns: [
+        { from: "./src/static", to: "./static" },
+      ],
+    }),
   ],
 };
