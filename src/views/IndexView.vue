@@ -1137,7 +1137,7 @@ export default {
         this.resourceData = this.lunbo[this.visible].uiElement.mainTitle.title;
       }, 5000);
     },
-    //                
+    //
   },
   async created() {
     axios
@@ -1169,7 +1169,8 @@ export default {
       })
       .catch((err) => console.log(err));
     // 推荐歌单数据
-    axios//      .get(
+    axios //
+      .get(
         'https://netease-cloud-music-c2c1ys55f-cc-0820.vercel.app/personalized'
       )
       .then((res) => {
