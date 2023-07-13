@@ -33,15 +33,16 @@ export default {
         };
       }
       this.mutations = o;
-    }
+    } 
   },
   install(_Vue) {
     Vue = _Vue;
     Vue.mixin({
       created() {
         if (!this.$parent) {
-          Vue.prototype.$store = this.$options.store;
-          store = this.$options.store;
+          // Vue.prototype.$store = this.$options.store;
+          // store = this.$options.store;
+          Vue.prototype.$router = this.$options.router;
         }
       },
     });

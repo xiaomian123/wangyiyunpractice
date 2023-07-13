@@ -1,18 +1,21 @@
 <template>
   <div class="bg-slate-100 w-screen h-screen">
-    <h1>扫码登录</h1>
+    <!-- <h1>扫码登录</h1> -->
     <!-- <img :src="qrcode" alt="" /> -->
 
     <div>
       <!-- 顶部标题 -->
       <div class="w-[88vw] mx-auto flex justify-between pt-[7vw]">
-          <Icon icon="formkit:left" width="4vw" heigt="4vw" @click.native="$router.push('/home')" />
+          <Icon icon="formkit:left" width="4vw" heigt="4vw" @click.native="$router.push('/IndexView')" />
           <p class="text-[5vw] text-[#737373]">游客登录</p>
       </div>
       <!-- logo -->
       <div class="flex justify-center pt-[15vw]">
           <!-- <img src="..atic/logo.fill.svg" alt="SVG Image" class="w-[39vw] h-[7vw]" /> -->
-          <Icon icon="ri:netease-cloud-music-fill" color="red" class=" w-[7vw] h-[7vw]" />
+          
+            <Icon icon="ri:netease-cloud-music-fill" color="red" class=" w-[7vw] h-[7vw]" />
+          
+          
           <p class="text-[5vw] font-[600] pl-3">网易云音乐</p>
       </div>
       <!-- 二维码 -->
@@ -105,9 +108,9 @@ export default {
     console.log(qrInfo.data.data.qrimg); //请求得到的key值
     this.pollingCheck(res.data.data.unikey); //调用方法
   },
-//   beforeDestroy() {
-//     // 页面销毁前做一些事
-//     console.log('beforeDestroy');
-//   },
+  beforeDestroy() {
+    // 页面销毁前做一些事
+    console.log('beforeDestroy');
+  },
 };
 </script>

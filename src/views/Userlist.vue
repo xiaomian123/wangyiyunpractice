@@ -6,7 +6,10 @@
       <div
         class="w-[92vw] h-[5vw] ml-[4vw] mt-[12vw] flex justify-between items-center"
       >
-        <Icon icon="ep:back" color="white" class="w-[5vw] h-[5vw]" />
+        <!-- <router-link :to="{path:'/IndexView'}"> -->
+          <Icon icon="ep:back" color="white" class="w-[5vw] h-[5vw]" @click.native="$router.push('/IndexView')" />
+
+        
         <div
           class="w-[14vw] h-[3.8vw] text-[2vw] bg-[#fff] rounded-[5vw] text-center"
         >
@@ -159,13 +162,24 @@
 <script>
 import Vue from 'vue';
 import { Tab, Tabs } from 'vant';
-
 Vue.use(Tab).use(Tabs);
+import { getUserAccount,getUserDetail ,UserId} from '@/request/index.js';
 export default {
+  name:'Userlist',
   data() {
     return {
       activeName: 'a',
     };
+  },
+  async created() {
+    const res1=await getUserAccount();
+      const res2=await getUserDetail(res1.data.account.id);
+      const res3=await UserId(res2.data.userPoint.userId);//用户id
+
+      console.log(res2)
+      console.log(res3)
+      // const userId =res2.data.userPoint.userId;
+      // console.log(userId)
   },
 };
 </script>

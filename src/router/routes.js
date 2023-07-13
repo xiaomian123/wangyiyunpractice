@@ -32,7 +32,7 @@ export default [
     component:()=>import('@/views/Foo.vue')
   },
   {
-    path:"/SongmenuView",//歌单详情
+    path:"/SongmenuView/:id",//歌单详情
     component:SongmenuView,
   },
   {
@@ -41,11 +41,11 @@ export default [
     component:()=>import('@/views/login.vue')
   },
   {
-    path:"/Userlist",
+    path:"/Userlist",// 用户资料
     component:Userlist,
   },
   {
-    path:"/Userdatedata",
+    path:"/Userdatedata", //更新用户资料
     component:Userdatedata,
   },
   // {

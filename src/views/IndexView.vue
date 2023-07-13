@@ -39,23 +39,29 @@
             <div
               class="flex justify-between items-center bg-[#F5F5F5] text-[#000] dark:bg-gray-900 dark:text-[#fff]"
             >
-              <p class="flex items-center text-[black] m-[1vw] p-[1vw]">
-                <img
-                  class="w-[6vw] h-[6vw] rounded-[50%]"
-                  src="https://p1.music.126.net/OyMBS2CywJBgyd4so5bl5Q==/109951164148707992.jpg?param=180y180"
-                  alt=""
-                />
-                <span
-                  class="ml-[4vw] text-[3vw] text-[#000] dark: dark:text-[#fff]"
-                  >一条猫不吃的咸鱼</span
-                >
-                <Icon
-                  icon="simple-line-icons:arrow-up"
-                  class="text-[#000] dark: dark:text-[#fff]"
-                  :rotate="1"
-                />
-              </p>
-              <Icon icon="mdi:line-scan" class="shaoma" />
+              <router-link :to="{ path: '/Userlist' }">
+                <p class="flex items-center text-[black] m-[1vw] p-[1vw]">
+                  <img
+                    class="w-[6vw] h-[6vw] rounded-[50%]"
+                    src="https://p1.music.126.net/OyMBS2CywJBgyd4so5bl5Q==/109951164148707992.jpg?param=180y180"
+                    alt=""
+                  />
+
+                  <span
+                    class="ml-[4vw] text-[3vw] text-[#000] dark: dark:text-[#fff]"
+                    >一条猫不吃的咸鱼</span
+                  >
+                  <Icon
+                    icon="simple-line-icons:arrow-up"
+                    class="text-[#000] dark: dark:text-[#fff]"
+                    :rotate="1"
+                  />
+                </p>
+              </router-link>
+
+              <router-link :to="{ path: '/login' }">
+                <Icon icon="mdi:line-scan" class="shaoma" />
+              </router-link>
             </div>
             <!-- 黑胶会员 -->
             <div
@@ -397,7 +403,7 @@
       <!-- 菜单 -->
 
       <div class="flex w-[95vw] h-[24vw] relative left-[2vw]">
-        <ul class="menu flex w-[100vw] overflow-auto ml-[3vw]">
+        <ul class="menu flex w-[100vw] h-[40vw] overflow-auto ml-[3vw]">
           <li
             v-for="item in menudan"
             :key="item.id"
@@ -414,8 +420,8 @@
       </div>
 
       <!-- 推荐歌单 -->
-      <!-- <SongList/> -->
-      <div class="mt-3 overflow-auto w-[95vw] ml-[2vw]">
+      <!-- <SongList :id="id"/> -->
+      <div class="mt-3 overflow-auto w-[95vw] ml-[2vw]" >
         <div class="flex justify-between items-center w-[95vw]">
           <div class="flex items-center w-[95vw]">
             <h3 class="font-[900]">推荐歌单</h3>
@@ -469,8 +475,9 @@
             </li>
           </van-popup>
         </div>
-        <div class="flex w-[95vw] relative h-[40vw]">
-          <ul class="menu overflow-auto flex h-[40vw]">
+        <div class="flex w-[95vw] relative h-[45vw]">
+          <ul class="menu overflow-auto flex w-[95vw] h-[45vw]">
+            <!-- 推荐歌单轮播 -->
             <div
               ref="wrapper"
               class="wrapper relative flex min-w-[30vw] flex-wrap h-[40vw] mr-[2.5vw] overflow-hidden"
@@ -507,48 +514,14 @@
                 {{ resourceData }}
               </p>
             </div>
-            <!-- 推荐歌单轮播 -->
-            <!-- <div class="w-[31vw] h-[31vw] mr-[2vw]">
-            <div
-              class="w-[31vw] h-[31vw] border-[1px] overflow-hidden relative rounded-[3vw]"
-            >
-              <div
-                class="absolute top-[4%] right-[8%] font-[800] text-[#fff] flex items-center z-30"
-              >
-                <Icon
-                  icon="ion:infinite-outline"
-                  class="text-[#fff] w-[6vw] h-[6vw]"
-                />
-              </div>
-              <transition
-                name="abc"
-                v-for="(item, index) in lunbo"
-                :key="item.id"
-              >
-                <div
-                  v-if="visible === index"
-                  class="absolute top-0 left-0&quot;"
-                >
-                  <img
-                    :src="item.uiElement.image.imageUrl"
-                    alt=""
-                    class="w-[31vw] h-[31vw] rounded-[3vw]"
-                  />
-                </div>
-              </transition>
-            </div>
-            <p class="text-[2.78vw] text-[#3E4759] scroll-item line-clamp-2">
-              {{ item.uiElement.mainTitle.title}}
-            </p>
-          </div> -->
 
             <li
               class="relative flex min-w-[30vw] flex-wrap h-[40vw] mr-[2.5vw]"
               v-for="(item, index) in tjgedan"
-              :key="index"
-              @click="saveIndexToArray(index)"
+              :key="item.id"
+             
             >
-              <router-link :to="{ path: '/SongmenuView/' }">
+              <router-link :to="{ path: `/SongmenuView/${id[index]}` }">
                 <img
                   :src="item.picUrl"
                   alt=""
@@ -1013,7 +986,7 @@ BScroll.use(ScrollBar);
 import TSwitch from '@/views/Switch.vue';
 // import TopView from './TopView.vue';
 // import SongList from './SongListView/SongListView.vue';
-// import SongList from './'
+
 import Search from '@/views/SearchView/SearchView.vue';
 // import { getUserAccount } from '@/request';
 // import store from '@/store/_index'
@@ -1031,6 +1004,7 @@ export default {
     // SongList,
     Search,
     TSwitch,
+    // SongList,
   },
   data() {
     return {
@@ -1075,6 +1049,8 @@ export default {
       toggle: false,
       returnout: false,
       tjgedanid: [],
+      id: [],
+      songmenudata:[],
     };
   },
   computed: {},
@@ -1105,11 +1081,17 @@ export default {
   //   this.scroll.destroy();
   // },
   methods: {
+    local() {
+      let url = window.location.href; // 存储到本地
+      let index = url.lastIndexOf('/') + 1;
+      this.id = url.slice(index);
+      console.log('this.id:',this.id);
+    },
     // increase:store.mutations.increase, // 写法2
     saveIndexToArray(index) {
       //存id
       (this.indexArray = []), this.indexArray.push(index);
-      console.log(this.indexArray);
+      // console.log(this.indexArray);
     },
     toggleMenu(name) {
       this.activeMenuItem = name;
@@ -1138,8 +1120,19 @@ export default {
       }, 5000);
     },
     //
+    changeId() {
+      this.id = [];
+      console.log(this.tjgedan)
+      for (let i = 0; i < this.tjgedan.length; i++) {
+        // console.log(this.tjgedan[i].id)
+        this.id.push(parseInt(this.tjgedan[i].id));
+      }
+      // console.log(this.id)
+    },
   },
   async created() {
+    this.local();
+    
     axios
       .get(
         // 'https://netease-cloud-music-api-five-roan-88.vercel.app/playlist/hot'
@@ -1156,9 +1149,24 @@ export default {
 
         // console.log(lunbo);
         // console.log(lunboTitle)
+        // this.songmenu = res.data.data.blocks[1].creatives; // 给 changeid 方法用
+        // console.log('songmenu:',songmenu)
+        // this.changeId(); //调用方法
       })
       // .then((cat) => this.fetchPlaylists(cat))
       .catch((err) => console.log(err));
+      // 歌单详情页面
+    axios
+      .get(
+        'https://netease-cloud-music-api-five-roan-88.vercel.app/playlist/detail?id=${this.id}'
+      )
+      .then((res) => {
+        this.songmenudata = res.data;
+        console.log('songmenudata是:', this.songmenudata);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     // 菜单数据
     axios
       .get(
@@ -1175,7 +1183,9 @@ export default {
       )
       .then((res) => {
         this.tjgedan = res.data.result;
+        console.log(this.tjgedan)
         this.playCount = this.tjgedan.playCount;
+        
         // console.log(res);
         // console.log(this.tjgedan);
         // console.log(this.playCount)
@@ -1200,6 +1210,8 @@ export default {
       });
     const res = await getUserAccount(); //获取用户信息
     console.log(res);
+  
+    this.changeId()
   },
 };
 var swiper = new Swiper('.mySwiper', {

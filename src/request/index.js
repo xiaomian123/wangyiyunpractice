@@ -21,7 +21,7 @@ export const getQrInfo=(key,qrimg=1)=>http.get('/login/qr/create',{params:{key,q
 export const  checkQrStatus=(key)=>http.get('/login/qr/check',{params:{key,timestamp:Date.now()}});//timestamp:时间戳
 // // export const getUserAccount =() => http.get('/user/account',{params:{id:123}})
 export const getUserAccount =() => http.get('/user/account');//获取用户参数
-export const getUserDetail =() => http.get('/user/detail',{params:{uid}})
+export const getUserDetail =(params) => http.get(`/user/detail?uid=${params}`);//用户数据
 
 // 榜单
 // export async function fetchSeachList() {
@@ -38,4 +38,6 @@ export const getUserDetail =() => http.get('/user/detail',{params:{uid}})
 export const songDetails = (params) => http.get(`/playlist/detail?id=${params}`);
 //歌单列表
 export const songInfo = (params) => http.get(`/playlist/track/all?id=${params}`);//2748492595
+// 用户id
+export const UserId = (params) => http.get(`/user/playlist?uid=${params}`);//
 

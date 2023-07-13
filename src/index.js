@@ -113,7 +113,7 @@ import Vue from 'vue';
 // import { Button, Popup, Area } from 'vant';
 import { Icon } from '@iconify/vue2';
 import App from '@/App.vue';
-import router from '@/router';
+// import router from '@/router';
 // import store from '@/store';
 // import { Switch, Drawer } from '@/components';
 // import formateTime from '@/utils/formateTime';
@@ -121,7 +121,17 @@ import router from '@/router';
 // Vue.use(Switch).use(Drawer)
 // .use(Button).use(Popup).use(Area);
 Vue.component('Icon',Icon);
-
+// 自定义 vue-router
+// import vueRouter from './vue-router';
+import router from './router';
+// import VueRouter from 'vue-router';
+// Vue.use(vueRouter);
+// const router = new VueRouter({
+//   routes:[
+//     {path:'/a',component:{render:(h)=>h('h1',{},['Page A'])}},
+//     {path:'/b',component:{render:(h)=>h('h1',{},['Page b'])}}
+//   ]
+// });
 new Vue({
   el: '#app',
   router,
